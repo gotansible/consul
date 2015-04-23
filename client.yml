@@ -2,8 +2,14 @@
 - hosts: all
   sudo: true
 
+  vars:
+    consul_is_server: false
+    consul_is_ui: false
+    consul_start_join: ["192.168.50.4"]
+    consul_bind_address: "192.168.50.5"
+
   roles:
-    - {role: consul, consul_is_server:false, consul_is_ui:false, consul_start_join: ["192.168.50.4"] }
+    - {role: consul }
 
   tasks: 
     - name: install consul

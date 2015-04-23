@@ -43,9 +43,9 @@ consul_skip_leave_on_interrupt: false
 consul_dns_port: 8600
 consul_http_port: 8500
 consul_rpc_port: 8400
+consul_server_port: 8300
 consul_serf_lan_port: 8301
 consul_serf_wan_port: 8302
-consul_server_port: 8300
 
 consul_dns_address: '{{consul_client_address}}'
 consul_http_address: '{{consul_client_address}}'

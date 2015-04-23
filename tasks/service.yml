@@ -41,6 +41,10 @@
   file: src=/etc/sv/{{ consul_service_name }} dest=/etc/service/{{ consul_service_name }} state=link
   notify: restart consul
 
+- name: Wait for service to start
+  wait_for: path=/etc/sv/{{ consul_service_name }}/supervise/ok timeout=7
+
 - name: start service
-  runit: name={{ consul_service_name }} state=started
+  runit: name={{ consul_service_name }} state=started timeout=30
+
 

@@ -8,6 +8,7 @@
 Vagrant.configure(2) do |config|
 	config.vm.define "server" do |server|
 		server.vm.box = "hashicorp/precise64"
+		server.vm.hostname = "server"
 		server.vm.provision :ansible do |ansible|
 			ansible.playbook = "server.yml"
 		end
@@ -16,6 +17,7 @@ Vagrant.configure(2) do |config|
 
 	config.vm.define "client" do |client|
 		client.vm.box = "hashicorp/precise64"
+		client.vm.hostname = "client"
 		client.vm.provision :ansible do |ansible|
 			ansible.playbook = "client.yml"
 		end
