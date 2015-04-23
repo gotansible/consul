@@ -1,7 +1,7 @@
 ---
 #consul config files
 
-- name: config - consul base 
+- name: consul config - base 
   template:
     src=base.json.j2
     dest={{ consul_config_dir }}/base.json
@@ -10,7 +10,7 @@
     mode=0755
   notify: restart consul
 
-- name: config - consul network
+- name: consul config - network
   template:
     src=network.json.j2
     dest={{ consul_config_dir }}/network.json
@@ -19,10 +19,10 @@
     mode=0755
   notify: restart consul
 
-- name: config - consul server 
+- name: consul config - auth
   template:
-    src=server.json.j2
-    dest={{ consul_config_dir }}/server.json
+    src=auth.json.j2
+    dest={{ consul_config_dir }}/auth.json
     owner={{ consul_user }}
     group={{ consul_group }}
     mode=0755

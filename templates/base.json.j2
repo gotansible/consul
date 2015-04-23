@@ -1,14 +1,20 @@
 {
   "datacenter": "{{consul_datacenter}}",
-  "data_dir": "{{consul_data_dir}}",
-  "log_level": "{{consul_log_level}}",
   "node_name": "{{consul_node_name}}",
-  "check_update_interval": "{{consul_check_update_interval}}",
-  "disable_update_check": {{consul_disable_update_check|lower()}},
-  "enable_debug": {{consul_enable_debug|lower()}},
+  "data_dir": "{{consul_data_dir}}",
+  "server": {{ consul_is_server|lower }},
+  {%if consul_is_server %}
+  "bootstrap_expect": {{consul_bootstrap_expect}},
+  "ui_dir": "{{consul_ui_dir}}",
+  {% endif %}
+  "log_level": "{{consul_log_level}}",
   "enable_syslog": {{consul_enable_syslog|lower()}},
+  "enable_debug": {{consul_enable_debug|lower()}},
   "leave_on_terminate": {{consul_leave_on_terminate|lower()}},
-  "skip_leave_on_interrupt": {{consul_skip_leave_on_interrupt|lower()}}
+  "skip_leave_on_interrupt": {{consul_skip_leave_on_interrupt|lower()}},
+
+  "check_update_interval": "{{consul_check_update_interval}}",
+  "disable_update_check": {{consul_disable_update_check|lower()}}
 
   {% if consul_statsd_enabled %},"statsd_addr": "{{consul_statsd_addr}}"{% endif %}
   {% if consul_statsite_enabled %},"statsite_addr": "{{consul_statsite_addr}}"{% endif %}

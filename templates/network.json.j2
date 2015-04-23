@@ -1,10 +1,10 @@
 {
-	{%if consul_join|length > 0 %} "start_join": ["{{ consul_join | join("\",\"")  }}"], {% endif %}
-	{%if consul_retry_join|length > 0 %}
-	"retry_join": [{{ consul_join | join(",") }}],
-	"rejoin_after_leave": {{consul_rejoin_after_leave}},
-	"retry_interval": "{{consul_retry_interval}}",
+	{%if consul_start_join|length > 0 %}
+	"start_join": ["{{ consul_start_join | join("\",\"") }}"],
+	"retry_join": ["{{ consul_start_join | join("\",\"") }}"],
 	{% endif %}
+	"rejoin_after_leave": {{consul_rejoin_after_leave|lower}},
+	"retry_interval": "{{consul_retry_interval}}",
 	"addresses": {
 		"dns": "{{consul_dns_address}}",
 		"http": "{{consul_http_address}}",

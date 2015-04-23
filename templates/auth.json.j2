@@ -1,0 +1,14 @@
+{
+	"cert_file": "{{consul_cert_file}}",
+	"key_file": "{{consul_key_file}}",
+	"disable_anonymous_signature": {{consul_disable_anonymous_signature|lower()}},
+	"disable_remote_exec": {{consul_disable_remote_exec|lower()}}
+	{%if consul_server_name|length>0 %},"server_name": "{{consul_server_name}}"{% endif %}
+	{%if consul_encrypt_key|length>0 %},"encrypt": "{{consul_encrypt_key}}"{% endif %}
+
+	{%if consul_verify_incoming or consul_verify_outgoing %}
+		,"ca_file": "{{consul_ca_file}}",
+		"verify_incoming": "{{consul_verify_incoming}}",
+		"verify_outgoing": "{{consul_verify_outgoing}}"
+	{% endif %}
+}
