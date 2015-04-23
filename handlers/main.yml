@@ -1,4 +1,4 @@
 ---
 - name: restart consul
-  action: service name=consul state=restarted
+  runit: name={{ consul_service_name }} state=restarted
 

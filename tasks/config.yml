@@ -8,6 +8,7 @@
     owner={{ consul_user }}
     group={{ consul_group }}
     mode=0755
+  notify: restart consul
 
 - name: config - consul network
   template:
@@ -16,6 +17,7 @@
     owner={{ consul_user }}
     group={{ consul_group }}
     mode=0755
+  notify: restart consul
 
 - name: config - consul server 
   template:
@@ -24,4 +26,5 @@
     owner={{ consul_user }}
     group={{ consul_group }}
     mode=0755
+  notify: restart consul
 

@@ -1,6 +1,8 @@
 {
-  "server": true,
-  "server_name": "{{consul_server_name}}",
-  "ui_dir": "{{consul_ui_dir}}",
-  "bootstrap_expect": {{consul_join | length}}
+	"server": true,
+	{%if consul_retry_join|length > 0 %}
+	"server_name": "{{consul_server_name}}",
+	{% endif %}
+	"ui_dir": "{{consul_ui_dir}}",
+	"bootstrap_expect": {{consul_join | length}}
 }

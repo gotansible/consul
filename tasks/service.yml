@@ -1,4 +1,14 @@
 ---
+- name: create consul directories
+  file:
+    state=directory
+    path={{ item }}
+    owner=root
+    group=root
+  with_items:
+    - /etc/sv/{{ consul_service_name }}
+    - /etc/sv/{{ consul_service_name }}/log
+    - /etc/sv/{{ consul_service_name }}/env
 
 - name: runit config
   template:
@@ -7,6 +17,16 @@
     owner={{ consul_user }}
     group={{ consul_group }}
     mode=0755
+  notify: restart consul
+
+- name: runit env
+  template:
+    src=GOMAXPROCS.j2
+    dest=/etc/sv/{{ consul_service_name }}/env/GOMAXPROCS
+    owner={{ consul_user }}
+    group={{ consul_group }}
+    mode=0755
+  notify: restart consul
 
 - name: runit log config
   template:
@@ -15,10 +35,11 @@
     owner={{ consul_user }}
     group={{ consul_group }}
     mode=0755
+  notify: restart consul
 
 - name: Create symlink 
   file: src=/etc/sv/{{ consul_service_name }} dest=/etc/service/{{ consul_service_name }} state=link
-  notify: nginx reload
+  notify: restart consul
 
 - name: start service
   runit: name={{ consul_service_name }} state=started

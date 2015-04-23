@@ -26,6 +26,7 @@
     - "{{ consul_install_dir }}"
     - "{{ consul_data_dir }}"
     - "{{ consul_config_dir }}"
+    - "{{ consul_log_dir }}"
 
 - name: set ownership
   file:

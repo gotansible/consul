@@ -4,12 +4,12 @@
   "log_level": "{{consul_log_level}}",
   "node_name": "{{consul_node_name}}",
   "check_update_interval": "{{consul_check_update_interval}}",
-  "disable_update_check": {{consul_disable_update_check}},
-  "enable_debug": {{consul_enable_debug}},
-  "enable_syslog": {{consul_enable_syslog}},
-  "leave_on_terminate": {{consul_leave_on_terminate}},
-  "skip_leave_on_interrupt": {{consul_skip_leave_on_interrupt}},
+  "disable_update_check": {{consul_disable_update_check|lower()}},
+  "enable_debug": {{consul_enable_debug|lower()}},
+  "enable_syslog": {{consul_enable_syslog|lower()}},
+  "leave_on_terminate": {{consul_leave_on_terminate|lower()}},
+  "skip_leave_on_interrupt": {{consul_skip_leave_on_interrupt|lower()}}
 
-  {% if consul_statsd_enabled %}"statsd_addr": "{{consul_statsd_addr}}",{% endif %}
-  {% if consul_statsite_enabled %}"statsite_addr": "{{consul_statsite_addr}}",{% endif %}
+  {% if consul_statsd_enabled %},"statsd_addr": "{{consul_statsd_addr}}"{% endif %}
+  {% if consul_statsite_enabled %},"statsite_addr": "{{consul_statsite_addr}}"{% endif %}
 }
