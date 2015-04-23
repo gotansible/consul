@@ -1,0 +1,8 @@
+---
+# ubuntu
+- name: install dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - unzip
+    - curl
+  when: ansible_os_family == 'Debian'

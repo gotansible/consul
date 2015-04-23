@@ -1,0 +1,6 @@
+---
+# aggregted vars 
+consul_install_dir : "/opt/{{ consul_service_name }}/{{ consul_version }}"
+consul_config_dir : "/etc/{{ consul_service_name }}"
+consul_log_dir : "/var/log/{{ consul_service_name }}"
+

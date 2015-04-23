@@ -1,0 +1,25 @@
+---
+
+- name: runit config
+  template:
+    src=runit.j2
+    dest=/etc/sv/{{ consul_service_name }}/run
+    owner={{ consul_user }}
+    group={{ consul_group }}
+    mode=0755
+
+- name: runit log config
+  template:
+    src=runit_log.j2
+    dest=/etc/sv/{{ consul_service_name }}/log/run
+    owner={{ consul_user }}
+    group={{ consul_group }}
+    mode=0755
+
+- name: Create symlink 
+  file: src=/etc/sv/{{ consul_service_name }} dest=/etc/service/{{ consul_service_name }} state=link
+  notify: nginx reload
+
+- name: start service
+  runit: name={{ consul_service_name }} state=started
+

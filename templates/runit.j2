@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+exec chpst -u {{ consul_user }}:{{ consul_group }} {{ consul_install_dir }}/consul agent -config-dir {{ consul_config_dir }}
+

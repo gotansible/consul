@@ -1,0 +1,27 @@
+---
+#consul config files
+
+- name: config - consul base 
+  template:
+    src=base.json.j2
+    dest={{ consul_config_dir }}/base.json
+    owner={{ consul_user }}
+    group={{ consul_group }}
+    mode=0755
+
+- name: config - consul network
+  template:
+    src=network.json.j2
+    dest={{ consul_config_dir }}/network.json
+    owner={{ consul_user }}
+    group={{ consul_group }}
+    mode=0755
+
+- name: config - consul server 
+  template:
+    src=server.json.j2
+    dest={{ consul_config_dir }}/server.json
+    owner={{ consul_user }}
+    group={{ consul_group }}
+    mode=0755
+

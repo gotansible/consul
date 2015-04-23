@@ -1,0 +1,13 @@
+---
+- hosts: all
+  sudo: true
+
+  roles:
+    - consul
+
+  tasks: 
+    - name: install server
+      include: tasks/install.yml
+
+    - name: install service config
+      include: tasks/service.yml

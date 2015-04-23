@@ -1,0 +1,3 @@
+#!/bin/sh
+exec chpst -u {{ consul_user }}:{{ consul_group }} svlogd -tt {{ consul_log_dir }}
+
