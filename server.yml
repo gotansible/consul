@@ -9,7 +9,3 @@
   roles:
     - {role: consul }
 
-  tasks: 
-    - name: install consul
-      include: tasks/install.yml
-
