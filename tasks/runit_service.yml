@@ -30,7 +30,7 @@
     owner=root
     group=root
     mode=0755
-  notify: restart {{ service_name }}
+  register: a
 
 - name: runit - environmental variables
   lineinfile:
@@ -42,7 +42,7 @@
     group=root
     mode=0755
   with_dict: service_env_vars|default({})
-  notify: restart {{ service_name }}
+  register: b
 
 - name: runit - set log config
   template:
@@ -51,17 +51,17 @@
     owner=root
     group=root
     mode=0755
-  notify: restart {{ service_name }}
+  register: c
 
 # merely making the directory available in the correct folder will cause runit to run the service
 - name: runit - symlink service
   file: src=/etc/sv/{{ service_name }} dest=/etc/service/{{ service_name }} state=link
-  notify: restart {{ service_name }}
+  register: first_start
 
 - name: runit - Wait for service to start
   wait_for: path=/etc/sv/{{ service_name }}/supervise/ok timeout=7
 
-- name: runit - ensure started
-  runit: name={{ service_name }} state=started
-
+- name: runit - restart
+  runit: name={{ service_name }} state=restarted
+  when: first_start.changed == false and (a.changed or b.changed or c.changed)
 

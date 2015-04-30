@@ -28,17 +28,6 @@
     - "{{ consul_config_dir }}"
     - "{{ consul_log_dir }}"
 
-- name: set ownership
-  file:
-    state=directory
-    path={{ item }}
-    owner={{ consul_user }}
-    group={{ consul_group }}
-    recurse=yes
-  with_items:
-    - "{{ consul_data_dir }}"
-    - "{{ consul_install_dir }}"
-
 - name: copy and unpack
   unarchive:
     src={{ consul_download_folder }}/{{ consul_archive }}
