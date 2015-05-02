@@ -1,7 +1,7 @@
 ---
 #consul config files
 
-- name: consul config - base 
+- name: consul config - base
   template:
     src=base.json.j2
     dest={{ consul_config_dir }}/base.json
