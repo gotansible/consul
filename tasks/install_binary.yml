@@ -10,11 +10,14 @@
   group:
     name={{ consul_group }}
     state=present
+    system=yes
 
 - name: create consul user
   user:
     name={{ consul_user }}
     group={{ consul_group }}
+    system=yes
+    createhome=no
 
 - name: create consul directories
   file:
@@ -34,5 +37,13 @@
     dest={{ consul_install_dir }}
     copy=no
   when: consul_was_downloaded|changed
+
+- name: add consul to path
+  template: 
+    src=environment.sh.j2
+    dest=/etc/profile.d/consul.sh
+    owner=root
+    group=root
+    mode=0755
 
 

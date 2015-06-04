@@ -4,13 +4,6 @@
 
 - include: install_binary.yml
 
-- name: add consul to path
-  template: 
-    src=environment.sh.j2
-    dest=/etc/profile.d/consul.sh
-    owner=root
-    group=root
-    mode=0755
 
 - name: setup consul configs
   include: config.yml
