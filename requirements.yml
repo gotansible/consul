@@ -2,4 +2,3 @@
 # $> ansible-galaxy install -r requirements.yml
 
 # from galazy
-- src: bakins.runit

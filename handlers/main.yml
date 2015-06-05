@@ -1,4 +1,6 @@
 ---
+
 - name: restart consul
-  runit: name={{ consul_service_name }} state=restarted
+  runit: name={{ consul_service_name }} state=up timeout=9 action=restart
+  when: not consul_service_status.restarted
 
