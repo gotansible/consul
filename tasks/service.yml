@@ -7,7 +7,7 @@
     state: up
     timeout: 10
     user: "{{ consul_user }}"
-    command:  "{{ consul_install_dir }}/consul agent -config-dir {{ consul_config_dir }}"
+    command: "{{ consul_install_dir }}/consul agent -config-dir {{ consul_config_dir }}"
     env_vars:
       GOMAXPROCS: "{{ansible_processor_cores + 1}}"
   register: consul_service_status
