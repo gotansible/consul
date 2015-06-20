@@ -4,7 +4,7 @@
   runit:
     name: "{{ consul_service_name }}"
     enabled: yes
-    state: up
+    state: start
     timeout: 10
     user: "{{ consul_user }}"
     command: "{{ consul_install_dir }}/consul agent -config-dir {{ consul_config_dir }}"
