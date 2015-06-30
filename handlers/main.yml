@@ -7,5 +7,5 @@
     state=up
     timeout=9
     action=restart
-  when: not consul_service_status.restarted
+  when: not (consul_service_status is defined and consul_service_status.restarted) 
 
