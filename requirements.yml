@@ -1,4 +1,4 @@
 ---
-# $> ansible-galaxy install -r requirements.yml
+- src: https://github.com/gotansible/runit
+  name: gotansible.runit
 
-# from galazy
